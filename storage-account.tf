@@ -1,13 +1,3 @@
-provider "azurerm" {
-  alias           = "aks-infra"
-  subscription_id = "${var.aks_infra_subscription_id}"
-}
-
-provider "azurerm" {
-  alias           = "mgmt"
-  subscription_id = "${var.mgmt_subscription_id}"
-}
-
 locals {
   account_name      = "${replace("${var.product}${var.env}", "-", "")}"
   mgmt_network_name = "${(var.subscription == "prod" || var.subscription == "nonprod" || var.subscription == "qa")? "mgmt-infra-prod" : "mgmt-infra-sandbox"}"
