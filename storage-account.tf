@@ -28,21 +28,21 @@ module "storage_account" {
   team_contact = "${var.team_contact}"
   destroy_me   = "${var.destroy_me}"
 
-  sa_subnets = ["${data.azurerm_subnet.aks-00.id}", "${data.azurerm_subnet.aks-01.id}", "${data.azurerm_subnet.jenkins-subnet.id}"]
+  sa_subnets = ["${data.azurerm_subnet.aks-00.id}", "${data.azurerm_subnet.aks-01.id}"]
 }
 
-data "azurerm_virtual_network" "mgmt_vnet" {
-  provider            = "azurerm.mgmt"
-  name                = "${local.mgmt_network_name}"
-  resource_group_name = "${local.mgmt_network_rg_name}"
-}
+# data "azurerm_virtual_network" "mgmt_vnet" {
+#   provider            = "azurerm.mgmt"
+#   name                = "${local.mgmt_network_name}"
+#   resource_group_name = "${local.mgmt_network_rg_name}"
+# }
 
-data "azurerm_subnet" "jenkins-subnet" {
-  provider             = "azurerm.mgmt"
-  name                 = "jenkins-subnet"
-  virtual_network_name = "${data.azurerm_virtual_network.mgmt_vnet.name}"
-  resource_group_name  = "${data.azurerm_virtual_network.mgmt_vnet.resource_group_name}"
-}
+# data "azurerm_subnet" "jenkins-subnet" {
+#   provider             = "azurerm.mgmt"
+#   name                 = "jenkins-subnet"
+#   virtual_network_name = "${data.azurerm_virtual_network.mgmt_vnet.name}"
+#   resource_group_name  = "${data.azurerm_virtual_network.mgmt_vnet.resource_group_name}"
+# }
 
 data "azurerm_virtual_network" "aks_core_vnet" {
   provider            = "azurerm.aks-infra"
@@ -81,21 +81,18 @@ resource "azurerm_storage_container" "service_rejected_containers" {
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name          = "storage-account-name"
   value         = "${module.storage_account.storageaccount_name}"
-  # vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
   key_vault_id  = "${module.rd_key_vault.key_vault_id}"
 }
 
 resource "azurerm_key_vault_secret" "storageaccount_id" {
   name         = "storage-account-id"
   value        = "${module.storage_account.storageaccount_id}"
-  # key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
   key_vault_id  = "${module.rd_key_vault.key_vault_id}"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_primary_key" {
   name          = "storage-account-primary-key"
   value         = "${module.storage_account.storageaccount_primary_access_key}"
-  # vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
   key_vault_id  = "${module.rd_key_vault.key_vault_id}"
 }
 
