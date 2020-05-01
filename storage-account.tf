@@ -65,19 +65,19 @@ data "azurerm_subnet" "aks-01" {
   resource_group_name  = "${data.azurerm_virtual_network.aks_core_vnet.resource_group_name}"
 }
 
-# resource "azurerm_storage_container" "service_containers" {
-#   name                 = "${local.client_service_names[count.index]}"
-#   resource_group_name  = "${azurerm_resource_group.rg.name}"
-#   storage_account_name = "${module.storage_account.storageaccount_name}"
-#   count                = "${length(local.client_service_names)}"
-# }
+resource "azurerm_storage_container" "service_containers" {
+  name                 = "${local.client_service_names[count.index]}"
+  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  storage_account_name = "${module.storage_account.storageaccount_name}"
+  count                = "${length(local.client_service_names)}"
+}
 
-# resource "azurerm_storage_container" "service_rejected_containers" {
-#   name                 = "${local.client_service_names[count.index]}-archive"
-#   resource_group_name  = "${azurerm_resource_group.rg.name}"
-#   storage_account_name = "${module.storage_account.storageaccount_name}"
-#   count                = "${length(local.client_service_names)}"
-# }
+resource "azurerm_storage_container" "service_rejected_containers" {
+  name                 = "${local.client_service_names[count.index]}-archive"
+  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  storage_account_name = "${module.storage_account.storageaccount_name}"
+  count                = "${length(local.client_service_names)}"
+}
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name          = "storage-account-name"
