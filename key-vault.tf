@@ -11,11 +11,12 @@ module "rd_key_vault" {
   object_id               = "${var.jenkins_AAD_objectId}"
   product_group_object_id = "${var.rd_product_group_object_id}"
   env                     = "${var.env}"
-  product                 = "${var.product}"
+  product                 = "${var.product}-shared"
   common_tags             = "${local.common_tags}"
 
   #aks migration
-  managed_identity_object_id = "${var.managed_identity_object_id}"
+  managed_identity_object_ids = ["${var.managed_identity_object_id}"]
+  create_managed_identity     = true
 }
 
 data "azurerm_key_vault" "key_vault" {
