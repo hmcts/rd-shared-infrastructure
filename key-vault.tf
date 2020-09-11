@@ -19,11 +19,6 @@ module "rd_key_vault" {
   create_managed_identity     = true
 }
 
-data "azurerm_key_vault" "key_vault" {
-  name                = "${module.rd_key_vault.key_vault_name}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-}
-
 output "vaultName" {
   value = "${local.key_vault_name}"
 }
