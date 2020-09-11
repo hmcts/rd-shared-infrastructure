@@ -66,7 +66,10 @@ variable "managed_identity_object_id" {
 
 variable "subscription" {}
 
-variable "mgmt_subscription_id" {}
+variable "mgmt_subscription_id" {
+  type    = "string"
+  default = "1baf5470-1c3e-40d3-a6f7-74bfbce4b348" # DTS-CFTPTL-INTSVC
+}
 
 variable "aks_infra_subscription_id" {}
 
