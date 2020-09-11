@@ -81,19 +81,19 @@ resource "azurerm_storage_container" "service_rejected_containers" {
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name          = "storage-account-name"
   value         = "${module.storage_account.storageaccount_name}"
-  key_vault_id  = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id  = "${module.rd_key_vault.key_vault_id}"
 }
 
 resource "azurerm_key_vault_secret" "storageaccount_id" {
   name          = "storage-account-id"
   value         = "${module.storage_account.storageaccount_id}"
-  key_vault_id  = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id  = "${module.rd_key_vault.key_vault_id}"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_primary_key" {
   name          = "storage-account-primary-key"
   value         = "${module.storage_account.storageaccount_primary_access_key}"
-  key_vault_id  = "${data.azurerm_key_vault.key_vault.id}"
+  key_vault_id  = "${module.rd_key_vault.key_vault_id}"
 }
 
 output "storage_account_name" {

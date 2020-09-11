@@ -1,3 +1,2 @@
-//external_hostname = "jrd.demo.platform.hmcts.net"
-aks_infra_subscription_id   = "96c274ce-846d-4e48-89a7-d528432298a7"
-managed_identity_object_id  = "73cd460f-d69c-4761-be6f-3d6b5614ede8"
+aks_infra_subscription_id  = "96c274ce-846d-4e48-89a7-d528432298a7"
+managed_identity_object_id = "73cd460f-d69c-4761-be6f-3d6b5614ede8"
