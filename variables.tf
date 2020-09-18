@@ -73,6 +73,11 @@ variable "jenkins_subscription_id" {
 
 variable "aks_infra_subscription_id" {}
 
+variable "hub_prod_subscription_id" {
+  type = "string"
+  default = "0978315c-75fe-4ada-9d11-1eb5e0e0b214" # HMCTS-HUB-PROD-INTSVC
+}
+
 variable "common_tags" {
   type = "map"
 }

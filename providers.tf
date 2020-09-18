@@ -16,3 +16,8 @@ provider "azurerm" {
   alias           = "jenkins"
   subscription_id = "${var.jenkins_subscription_id}"
 }
+
+provider "azurerm" {
+  alias           = "rdo"
+  subscription_id = "${var.hub_prod_subscription_id}"
+}
