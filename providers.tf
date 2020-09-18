@@ -8,6 +8,6 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias           = "jenkins"
+  alias           = "mgmt"
   subscription_id = "${var.jenkins_subscription_id}"
 }
