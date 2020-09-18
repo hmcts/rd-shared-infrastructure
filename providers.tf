@@ -11,3 +11,8 @@ provider "azurerm" {
   alias           = "mgmt"
   subscription_id = "${var.jenkins_subscription_id}"
 }
+
+provider "azurerm" {
+  alias           = "jenkins"
+  subscription_id = "${var.jenkins_subscription_id}"
+}
