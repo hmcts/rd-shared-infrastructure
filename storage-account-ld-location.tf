@@ -32,39 +32,6 @@ module "storage_account_ld_location" {
   sa_subnets = ["${data.azurerm_subnet.aks-01.id}", "${data.azurerm_subnet.aks-00.id}", "${data.azurerm_subnet.jenkins_subnet.id}"]
 }
 
-data "azurerm_virtual_network" "mgmt_vnet" {
-  provider            = "azurerm.mgmt"
-  name                = "${local.mgmt_network_name}"
-  resource_group_name = "${local.mgmt_network_rg_name}"
-}
-
-data "azurerm_subnet" "jenkins_subnet" {
-  provider             = "azurerm.mgmt"
-  name                 = "iaas"
-  virtual_network_name = "${data.azurerm_virtual_network.mgmt_vnet.name}"
-  resource_group_name  = "${data.azurerm_virtual_network.mgmt_vnet.resource_group_name}"
-}
-
-data "azurerm_virtual_network" "aks_core_vnet" {
-  provider            = "azurerm.aks-infra"
-  name                = "core-${var.env}-vnet"
-  resource_group_name = "aks-infra-${var.env}-rg"
-}
-
-data "azurerm_subnet" "aks-00" {
-  provider             = "azurerm.aks-infra"
-  name                 = "aks-00"
-  virtual_network_name = "${data.azurerm_virtual_network.aks_core_vnet.name}"
-  resource_group_name  = "${data.azurerm_virtual_network.aks_core_vnet.resource_group_name}"
-}
-
-data "azurerm_subnet" "aks-01" {
-  provider             = "azurerm.aks-infra"
-  name                 = "aks-01"
-  virtual_network_name = "${data.azurerm_virtual_network.aks_core_vnet.name}"
-  resource_group_name  = "${data.azurerm_virtual_network.aks_core_vnet.resource_group_name}"
-}
-
 resource "azurerm_storage_container" "service_container" {
   name                 = "${local.container_name}"
   resource_group_name  = "${azurerm_resource_group.rg.name}"
@@ -77,29 +44,29 @@ resource "azurerm_storage_container" "service_archive_container" {
   storage_account_name = "${module.storage_account_ld_location.storageaccount_name}"
 }
 
-resource "azurerm_key_vault_secret" "storage_account_name" {
-  name          = "storage-account-name"
+resource "azurerm_key_vault_secret" "ld_location_storage_account_name" {
+  name          = "ld-location-storage-account-name"
   value         = "${module.storage_account_ld_location.storageaccount_name}"
   key_vault_id  = "${data.azurerm_key_vault.key_vault.id}"
 }
 
-resource "azurerm_key_vault_secret" "storageaccount_id" {
-  name          = "storage-account-id"
+resource "azurerm_key_vault_secret" "ld_location_storageaccount_id" {
+  name          = "ld-location-storage-account-id"
   value         = "${module.storage_account_ld_location.storageaccount_id}"
   key_vault_id  = "${data.azurerm_key_vault.key_vault.id}"
 }
 
-resource "azurerm_key_vault_secret" "storage_account_primary_key" {
-  name          = "storage-account-primary-key"
+resource "azurerm_key_vault_secret" "ld_location_storage_account_primary_key" {
+  name          = "ld-location-storage-account-primary-key"
   value         = "${module.storage_account_ld_location.storageaccount_primary_access_key}"
   key_vault_id  = "${data.azurerm_key_vault.key_vault.id}"
 }
 
-output "storage_account_name" {
+output "ld_location_storage_account_name" {
   value = "${module.storage_account_ld_location.storageaccount_name}"
 }
 
-output "storage_account_primary_key" {
+output "ld_location_storage_account_primary_key" {
   sensitive = true
   value     = "${module.storage_account_ld_location.storageaccount_primary_access_key}"
 }
