@@ -1,20 +1,14 @@
 locals {
-  product = "ld-location"
-  
-  account_name          = "${local.product}-${var.env}"
-  mgmt_network_name     = "core-cftptl-intsvc-vnet"
-  mgmt_network_rg_name  = "aks-infra-cftptl-intsvc-rg"
-  
-  // for each client service two containers are created: one named after the service
-  // and another one, named {service_name}-rejected, for storing envelopes rejected by bulk-scan
-  container_name = "lrd-ref-data"
-  container_archive_name = "lrd-ref-data-archive"
+  product                   = "ld-location"
+  ld_location_account_name  = "${local.product}-${var.env}"   
+  container_name            = "lrd-ref-data"
+  container_archive_name    = "lrd-ref-data-archive"
 }
 
 module "storage_account_ld_location" {
   source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=master"
   env                      = "${var.env}"
-  storage_account_name     = "${local.account_name}"
+  storage_account_name     = "${local.ld_location_account_name}"
   resource_group_name      = "${azurerm_resource_group.rg.name}"
   location                 = "${var.location}"
   account_kind             = "BlobStorage"
