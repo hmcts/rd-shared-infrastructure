@@ -11,10 +11,10 @@ module "storage_account_ld_location" {
   storage_account_name     = "${local.ld_location_account_name}"
   resource_group_name      = "${azurerm_resource_group.rg.name}"
   location                 = "${var.location}"
-  account_kind             = "BlobStorage"
+  account_kind             = "StorageV2"
   account_tier             = "Standard"
-  account_replication_type = "LRS"
-  access_tier              = "Hot"
+  account_replication_type = "${var.ld_location_storage_repl_type}"
+  access_tier              = "${var.ld_location_storage_access_tier}"
 
   enable_https_traffic_only = true
 

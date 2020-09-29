@@ -73,3 +73,13 @@ variable "aks_infra_subscription_id" {}
 variable "common_tags" {
   type = "map"
 }
+
+variable "ld_location_storage_repl_type" {
+  type    = "string"
+  default = "LRS"
+}
+
+variable "ld_location_storage_access_tier" {
+  type    = "string"
+  default = "Cool"
+}
