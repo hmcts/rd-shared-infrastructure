@@ -1,5 +1,5 @@
 locals {
-  product                   = "ldlocation"
+  product                   = "rdlocation"
   ld_location_account_name  = "${local.product}${var.env}"
   container_name            = "lrd-ref-data"
   container_archive_name    = "lrd-ref-data-archive"
