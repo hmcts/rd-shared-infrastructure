@@ -4,7 +4,7 @@ locals {
 }
 
 module "storage_account" {
-  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=master"
+  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=azurermv2"
   env                      = var.env
   storage_account_name     = local.account_name
   resource_group_name      = azurerm_resource_group.rg.name
@@ -28,14 +28,12 @@ module "storage_account" {
 
 resource "azurerm_storage_container" "service_containers" {
   name                 = local.client_service_names[count.index]
-  resource_group_name  = azurerm_resource_group.rg.name
   storage_account_name = module.storage_account.storageaccount_name
   count                = length(local.client_service_names)
 }
 
 resource "azurerm_storage_container" "service_rejected_containers" {
   name                 = join("-", [local.client_service_names[count.index], "archive"])
-  resource_group_name  = azurerm_resource_group.rg.name
   storage_account_name = module.storage_account.storageaccount_name
   count                = length(local.client_service_names)
 }
