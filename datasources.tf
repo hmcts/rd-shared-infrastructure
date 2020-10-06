@@ -45,7 +45,7 @@ data "azurerm_virtual_network" "rdo_sftp_vnet" {
 data "azurerm_subnet" "rdo_sftp_public" {
   provider              = azurerm.rdo
   name                  = "rdo-sftp-public"
-  virtual_network_name  = data.azurerm_virtual_network.rdo_sftp-vnet.name
+  virtual_network_name  = data.azurerm_virtual_network.rdo_sftp_vnet.name
   resource_group_name   = data.azurerm_virtual_network.rdo_sftp_vnet.resource_group_name
 }
 
