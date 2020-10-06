@@ -25,4 +25,4 @@ data "azurerm_key_vault" "key_vault" {
 
 output "vaultName" {
   value = local.key_vault_name
-}
+}''
