@@ -15,7 +15,7 @@ module "rd_key_vault" {
   common_tags             = local.common_tags
 
   #aks migration
-  managed_identity_object_id = [var.managed_identity_object_id]
+  managed_identity_object_id = var.managed_identity_object_id
 }
 
 data "azurerm_key_vault" "key_vault" {
