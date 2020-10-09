@@ -23,7 +23,7 @@ module "storage_account" {
   team_contact = var.team_contact
   destroy_me   = var.destroy_me
 
-  sa_subnets = [data.azurerm_subnet.aks_00.id, data.azurerm_subnet.aks_01.id, data.azurerm_subnet.jenkins_subnet.id, data.azurerm_subnet.rdo_sftp_public, data.azurerm_subnet.rdo_sftp_private]
+  sa_subnets = [data.azurerm_subnet.aks_00.id, data.azurerm_subnet.aks_01.id, data.azurerm_subnet.jenkins_subnet.id, data.azurerm_subnet.rdo_sftp_public.id, data.azurerm_subnet.rdo_sftp_private.id]
 }
 
 resource "azurerm_storage_container" "service_containers" {
