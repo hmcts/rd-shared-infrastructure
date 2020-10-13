@@ -39,19 +39,19 @@ resource "azurerm_storage_container" "service_archive_container" {
 resource "azurerm_key_vault_secret" "rd_location_storage_account_name" {
   name          = "rd-location-storage-account-name"
   value         = module.storage_account_rd_location.storageaccount_name
-  key_vault_id  = data.azurerm_key_vault.key_vault.id
+  key_vault_id  = module.rd_key_vault.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "rd_location_storageaccount_id" {
   name          = "rd-location-storage-account-id"
   value         = module.storage_account_rd_location.storageaccount_id
-  key_vault_id  = data.azurerm_key_vault.key_vault.id
+  key_vault_id  = module.rd_key_vault.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "rd_location_storage_account_primary_key" {
   name          = "rd-location-storage-account-primary-key"
   value         = module.storage_account_rd_location.storageaccount_primary_access_key
-  key_vault_id  = data.azurerm_key_vault.key_vault.id
+  key_vault_id  = module.rd_key_vault.key_vault_id
 }
 
 output "rd_location_storage_account_name" {
