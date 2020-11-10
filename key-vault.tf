@@ -3,7 +3,7 @@ locals {
 }
 
 module "rd_key_vault" {
-  source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=azurermv2"
+  source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
   name                    = local.key_vault_name
   location                = var.location
   resource_group_name     = azurerm_resource_group.rg.name
