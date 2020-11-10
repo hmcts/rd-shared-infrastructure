@@ -16,7 +16,7 @@ module "rd_key_vault" {
 
   #aks migration
   managed_identity_object_ids = [var.managed_identity_object_id]
-  create_managed_identity    = true
+  create_managed_identity     = true
 }
 
 output "vaultName" {
