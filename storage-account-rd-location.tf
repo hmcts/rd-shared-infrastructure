@@ -6,7 +6,7 @@ locals {
 }
 
 module "storage_account_rd_location" {
-  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=azurermv2"
+  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=master"
   env                      = var.env
   storage_account_name     = local.rd_location_account_name
   resource_group_name      = azurerm_resource_group.rg.name
