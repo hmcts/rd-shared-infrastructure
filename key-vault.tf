@@ -13,10 +13,7 @@ module "rd_key_vault" {
   env                     = var.env
   product                 = var.product
   common_tags             = local.common_tags
-
-  #aks migration
-  managed_identity_object_ids = [var.managed_identity_object_id]
-  create_managed_identity     = true
+  create_managed_identity = true
 }
 
 output "vaultName" {
