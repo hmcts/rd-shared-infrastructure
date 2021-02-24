@@ -29,6 +29,24 @@ module "caseworker-subscription" {
   resource_group_name   = local.resource_group_name
 }
 
+module "am-orm-test-subscription" {
+  source                = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=master"
+  count                 = lower(var.env) == "aat" ? 1 : 0
+  name                  = local.caseworker_subscription_name
+  namespace_name        = module.servicebus-namespace.name
+  topic_name            = module.caseworker-topic.name
+  resource_group_name   = local.resource_group_name
+}
+
+module "am-orm-test-pr-subscription" {
+  source                = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=master"
+  count                 = lower(var.env) == "aat" ? 1 : 0
+  name                  = local.caseworker_subscription_name
+  namespace_name        = module.servicebus-namespace.name
+  topic_name            = module.caseworker-topic.name
+  resource_group_name   = local.resource_group_name
+}
+
 resource "azurerm_key_vault_secret" "caseworker-topic-primary-send-listen-conn-str" {
   name         = "caseworker-topic-primary-send-listen-connection-string"
   value        = module.caseworker-topic.primary_send_and_listen_connection_string
