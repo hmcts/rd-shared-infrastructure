@@ -18,7 +18,6 @@ module "servicebus-namespace" {
   resource_group_name = local.resource_group_name
 }
 
-
 module "caseworker-topic" {
   source                = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=master"
   name                  = local.caseworker_topic_name
