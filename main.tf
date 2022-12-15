@@ -10,5 +10,5 @@ locals {
     "managedBy"    = var.team_name
   }
 
-  tags = merge(var.common_tags, {"Team Contact" = "#referencedata",  "BuiltFrom" = "https://github.com/hmcts/rd-shared-infrastructure"})
+  tags = merge(var.common_tags, {"Team Contact" = "#referencedata"})
 }
