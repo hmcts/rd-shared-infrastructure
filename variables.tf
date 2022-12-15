@@ -54,6 +54,24 @@ variable "team_contact" {
   default     = "#referencedata"
 }
 
+variable "business_area" {
+  type        = string
+  description = "Business area"
+  default     = "CFT"
+}
+
+variable "app" {
+  type        = string
+  description = "Application"
+  default     = "reference-data"
+}
+
+variable "built_from" {
+  type        = string
+  description = "Git Repository"
+  default     = "https://github.com/hmcts/rd-shared-infrastructure"
+}
+
 variable "destroy_me" {
   type        = string
   description = "Here be dragons! In the future if this is set to Yes then automation will delete this resource on a schedule. Please set to No unless you know what you are doing"

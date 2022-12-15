@@ -22,7 +22,9 @@ module "storage_account_rd_commondata" {
   common_tags  = local.tags
   team_contact = var.team_contact
   destroy_me   = var.destroy_me
-
+  business_area= var.business_area
+  app          = var.app
+  built_from    = var.built_from
   sa_subnets = local.all_valid_subnets
 }
 
