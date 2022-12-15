@@ -1,8 +1,8 @@
 locals {
   common_tags = {
-    "BuiltFrom"    = "https://github.com/hmcts/rd-shared-infrastructure"
-    "application"  = "reference-data"
-    "businessArea" = "CFT"
+    "BuiltFrom"    = var.builtfrom
+    "application"  = var.app
+    "businessArea" = var.business
     "environment"  = var.env
     "Team Name"    = var.team_name
     "Team Contact" = var.team_contact
@@ -10,5 +10,5 @@ locals {
     "managedBy"    = var.team_name
   }
 
-  tags = merge(var.common_tags, {"Team Contact" = "#referencedata"})
+  tags = merge(var.common_tags, {"Team Contact" = "#referencedata", "businessArea" = "CFT", "BuiltFrom" = "https://github.com/hmcts/rd-shared-infrastructure", "application" = "reference-data"})
 }
