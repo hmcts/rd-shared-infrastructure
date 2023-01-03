@@ -1,4 +1,4 @@
-module = "ctags" {
+module "ctags" {
       "BuiltFrom"    = var.built_from
       "application"  = var.app
       "businessArea" = var.business_area
