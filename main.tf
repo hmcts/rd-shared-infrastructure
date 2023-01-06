@@ -13,4 +13,5 @@ locals {
   common_tags = module.ctags.common_tags
 
   tags = merge(var.common_tags, {Team Contact = "#referencedata"})
+
 }
