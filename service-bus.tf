@@ -2,7 +2,8 @@ locals {
   servicebus_namespace_name                     = join("-", [var.product, "servicebus", var.env])
   caseworker_topic_name                         = join("-", [var.product, "caseworker-topic", var.env])
   caseworker_subscription_name                  = join("-", [var.product, "caseworker-subscription", var.env])
-  
+
+  judicial_servicebus_namespace_name            = join("-", [var.product, "servicebus", var.env])
   judicial_topic_name                           = join("-", [var.product, "judicial-topic", var.env])
   judicial_subscription_name                    = join("-", [var.product, "judicial-subscription", var.env])
 
@@ -16,6 +17,19 @@ module "servicebus-namespace" {
   
   source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
   name                = local.servicebus_namespace_name
+  location            = var.location
+  env                 = var.env
+  common_tags         = local.common_tags
+  resource_group_name = local.resource_group_name
+}
+
+module "judicial_servicebus_namespace_name" {
+  providers = {
+    azurerm.private_endpoint = azurerm.private_endpoint
+  }
+
+  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=master"
+  name                = local.judicial_servicebus_namespace_name
   location            = var.location
   env                 = var.env
   common_tags         = local.common_tags
