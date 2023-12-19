@@ -4,6 +4,7 @@ metadata:
   name: "rd-shared-infrastructure"
   annotations:
     # This must match folder-name/job-name in Jenkins.
+    # sample .
     jenkins.io/job-full-name: cft:HMCTS_j_to_z/rd-shared-infrastructure
     github.com/project-slug: hmcts/rd-shared-infrastructure
   tags:
