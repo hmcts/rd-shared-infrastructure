@@ -1,7 +1,7 @@
 locals {
-  rd_data_extract_product         = "rddataextract"
-  rd_data_extract_account_name    = join("", [local.rd_data_extract_product, var.env])
-  rd_data_extract_container_name  = "rd-data-extract"
+  rd_data_extract_product        = "rddataextract"
+  rd_data_extract_account_name   = join("", [local.rd_data_extract_product, var.env])
+  rd_data_extract_container_name = "rd-data-extract"
 
   de_pim_roles = var.env != "prod" ? {} : {
     "Storage Blob Data Contributor" = {
