@@ -1,11 +1,11 @@
 locals {
-  mgmt_network_name = "cft-ptl-vnet"
+  mgmt_network_name    = "cft-ptl-vnet"
   mgmt_network_rg_name = "cft-ptl-network-rg"
 
   prod_vnet_name           = "cft-prod-vnet"
   prod_vnet_resource_group = "cft-prod-network-rg"
 
-  aks_core_vnet = "cft-${var.env}-vnet"
+  aks_core_vnet    = "cft-${var.env}-vnet"
   aks_core_vnet_rg = "cft-${var.env}-network-rg"
 }
 
@@ -63,17 +63,17 @@ data "azurerm_virtual_network" "rdo_sftp_vnet" {
 }
 
 data "azurerm_subnet" "rdo_sftp_public" {
-  provider              = azurerm.rdo
-  name                  = "rdo-sftp-public"
-  virtual_network_name  = data.azurerm_virtual_network.rdo_sftp_vnet.name
-  resource_group_name   = data.azurerm_virtual_network.rdo_sftp_vnet.resource_group_name
+  provider             = azurerm.rdo
+  name                 = "rdo-sftp-public"
+  virtual_network_name = data.azurerm_virtual_network.rdo_sftp_vnet.name
+  resource_group_name  = data.azurerm_virtual_network.rdo_sftp_vnet.resource_group_name
 }
 
 data "azurerm_subnet" "rdo_sftp_private" {
-  provider              = azurerm.rdo
-  name                  = "rdo-sftp-private"
-  virtual_network_name  = data.azurerm_virtual_network.rdo_sftp_vnet.name
-  resource_group_name   = data.azurerm_virtual_network.rdo_sftp_vnet.resource_group_name
+  provider             = azurerm.rdo
+  name                 = "rdo-sftp-private"
+  virtual_network_name = data.azurerm_virtual_network.rdo_sftp_vnet.name
+  resource_group_name  = data.azurerm_virtual_network.rdo_sftp_vnet.resource_group_name
 }
 
 data "azurerm_virtual_network" "bau_bais_prod_vnet" {
@@ -83,8 +83,8 @@ data "azurerm_virtual_network" "bau_bais_prod_vnet" {
 }
 
 data "azurerm_subnet" "bau_bais_private_prod" {
-  provider            = azurerm.sds_prod
-  name                  = "bau-bais_private_prod"
-  virtual_network_name  = data.azurerm_virtual_network.bau_bais_prod_vnet.name
-  resource_group_name   = data.azurerm_virtual_network.bau_bais_prod_vnet.resource_group_name
+  provider             = azurerm.sds_prod
+  name                 = "bau-bais_private_prod"
+  virtual_network_name = data.azurerm_virtual_network.bau_bais_prod_vnet.name
+  resource_group_name  = data.azurerm_virtual_network.bau_bais_prod_vnet.resource_group_name
 }

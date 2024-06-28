@@ -1,6 +1,6 @@
 locals {
-  account_name          = join("", [var.product, var.env])
-  client_service_names  = ["jud-ref-data"]
+  account_name         = join("", [var.product, var.env])
+  client_service_names = ["jud-ref-data"]
 
   valid_subnets = [
     data.azurerm_subnet.aks_00.id,
@@ -74,19 +74,19 @@ resource "azurerm_storage_container" "kt_files_container" {
 }
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
-  name          = "storage-account-name"
-  value         = module.storage_account.storageaccount_name
-  key_vault_id  = module.rd_key_vault.key_vault_id
+  name         = "storage-account-name"
+  value        = module.storage_account.storageaccount_name
+  key_vault_id = module.rd_key_vault.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "storageaccount_id" {
-  name          = "storage-account-id"
-  value         = module.storage_account.storageaccount_id
-  key_vault_id  = module.rd_key_vault.key_vault_id
+  name         = "storage-account-id"
+  value        = module.storage_account.storageaccount_id
+  key_vault_id = module.rd_key_vault.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "storage_account_primary_key" {
-  name          = "storage-account-primary-key"
-  value         = module.storage_account.storageaccount_primary_access_key
-  key_vault_id  = module.rd_key_vault.key_vault_id
+  name         = "storage-account-primary-key"
+  value        = module.storage_account.storageaccount_primary_access_key
+  key_vault_id = module.rd_key_vault.key_vault_id
 }
