@@ -88,3 +88,63 @@ resource "azurerm_key_vault_secret" "storage_account_primary_key" {
   value        = module.storage_account.storageaccount_primary_access_key
   key_vault_id = module.rd_key_vault.key_vault_id
 }
+
+locals {
+  storage_to_import = {
+    "Storage Blob Delegator"        = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/db58b8e5-c6ad-4a2a-8342-4190687cbf4a|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Reader"      = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Contributor" = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+  }
+  storage_rd_commondata_to_import = {
+    "Storage Blob Delegator"        = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdcommondataprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/db58b8e5-c6ad-4a2a-8342-4190687cbf4a|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Reader"      = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdcommondataprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Contributor" = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdcommondataprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+  }
+  storage_rd_data_extract_to_import = {
+    "Storage Blob Data Reader"      = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rddataextractprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Contributor" = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rddataextractprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Delegator"        = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rddataextractprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/db58b8e5-c6ad-4a2a-8342-4190687cbf4a|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+  }
+  storage_rd_location_to_import = {
+    "Storage Blob Data Reader"      = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdlocationprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Contributor" = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdlocationprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Delegator"        = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdlocationprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/db58b8e5-c6ad-4a2a-8342-4190687cbf4a|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+  }
+  storage_rd_professional_to_import = {
+    "Storage Blob Data Reader"      = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdprofessionalprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/2a2b9908-6ea1-4ae2-8e65-a410df84e7d1|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Data Contributor" = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdprofessionalprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+    "Storage Blob Delegator"        = "/subscriptions/${data.azurerm_subscription.current.subscription_id}/resourceGroups/rd-prod/providers/Microsoft.Storage/storageAccounts/rdprofessionalprod|/subscriptions/${data.azurerm_subscription.current.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/db58b8e5-c6ad-4a2a-8342-4190687cbf4a|f0a367e1-7e08-42b5-81e4-c848787e6f1e"
+  }
+}
+
+data "azurerm_subscription" "current" {}
+
+import {
+  for_each = var.env == "prod" ? local.storage_to_import : {}
+  to       = module.storage_account.azurerm_pim_eligible_role_assignment.this[each.key]
+  id       = each.value
+}
+
+import {
+  for_each = var.env == "prod" ? local.storage_rd_commondata_to_import : {}
+  to       = module.storage_account_rd_commondata.azurerm_pim_eligible_role_assignment.this[each.key]
+  id       = each.value
+}
+
+import {
+  for_each = var.env == "prod" ? local.storage_rd_data_extract_to_import : {}
+  to       = module.storage_account_rd_data_extract.azurerm_pim_eligible_role_assignment.this[each.key]
+  id       = each.value
+}
+
+import {
+  for_each = var.env == "prod" ? local.storage_rd_location_to_import : {}
+  to       = module.storage_account_rd_location.azurerm_pim_eligible_role_assignment.this[each.key]
+  id       = each.value
+}
+
+import {
+  for_each = var.env == "prod" ? local.storage_rd_professional_to_import : {}
+  to       = module.storage_account_rd_professional.azurerm_pim_eligible_role_assignment.this[each.key]
+  id       = each.value
+}
