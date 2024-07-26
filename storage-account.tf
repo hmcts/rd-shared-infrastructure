@@ -120,9 +120,21 @@ locals {
 data "azurerm_subscription" "current" {}
 
 import {
+  for_each = var.env == "prod" ? { "import" = "import" } : {}
+  to       = module.storage_account.time_static.pim_start
+  id       = "2024-03-13T15:05:53.387Z"
+}
+
+import {
   for_each = var.env == "prod" ? local.storage_to_import : {}
   to       = module.storage_account.azurerm_pim_eligible_role_assignment.this[each.key]
   id       = each.value
+}
+
+import {
+  for_each = var.env == "prod" ? { "import" = "import" } : {}
+  to       = module.storage_account_rd_commondata.time_static.pim_start
+  id       = "2024-03-13T15:05:54.513Z"
 }
 
 import {
@@ -132,15 +144,33 @@ import {
 }
 
 import {
+  for_each = var.env == "prod" ? { "import" = "import" } : {}
+  to       = module.storage_account_rd_data_extract.time_static.pim_start
+  id       = "2024-03-13T15:05:53.377Z"
+}
+
+import {
   for_each = var.env == "prod" ? local.storage_rd_data_extract_to_import : {}
   to       = module.storage_account_rd_data_extract.azurerm_pim_eligible_role_assignment.this[each.key]
   id       = each.value
 }
 
 import {
+  for_each = var.env == "prod" ? { "import" = "import" } : {}
+  to       = module.storage_account_rd_location.time_static.pim_start
+  id       = "2024-03-13T15:06:04.29Z"
+}
+
+import {
   for_each = var.env == "prod" ? local.storage_rd_location_to_import : {}
   to       = module.storage_account_rd_location.azurerm_pim_eligible_role_assignment.this[each.key]
   id       = each.value
+}
+
+import {
+  for_each = var.env == "prod" ? { "import" = "import" } : {}
+  to       = module.storage_account_rd_professional.time_static.pim_start
+  id       = "2024-03-13T15:06:03.553Z"
 }
 
 import {
