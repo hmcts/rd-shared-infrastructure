@@ -127,9 +127,9 @@ import {
 
 import {
   depends_on = module.storage_account.time_static.pim_start
-  for_each = var.env == "prod" ? local.storage_to_import : {}
-  to       = module.storage_account.azurerm_pim_eligible_role_assignment.this[each.key]
-  id       = each.value
+  for_each   = var.env == "prod" ? local.storage_to_import : {}
+  to         = module.storage_account.azurerm_pim_eligible_role_assignment.this[each.key]
+  id         = each.value
 }
 
 
