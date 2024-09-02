@@ -126,12 +126,17 @@ import {
 }
 
 import {
-  depends_on = module.storage_account.time_static.pim_start
   for_each = var.env == "prod" ? local.storage_to_import : {}
   to       = module.storage_account.azurerm_pim_eligible_role_assignment.this[each.key]
   id       = each.value
 }
 
+
+import {
+  for_each = var.env == "prod" ? local.storage_to_import : {}
+  to       = module.storage_account.azurerm_pim_eligible_role_assignment.this[each.key].schedule.start_date_time
+  id       = "2024-03-13T15:05:53.387Z"
+}
 
 import {
   for_each = var.env == "prod" ? { "import" = "import" } : {}
