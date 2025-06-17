@@ -9,3 +9,4 @@ locals {
     "businessArea" = "CFT"
   }))
 }
+
