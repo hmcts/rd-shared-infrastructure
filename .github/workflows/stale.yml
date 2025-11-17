@@ -1,7 +1,7 @@
 name: 'Close stale issues and PRs'
 on:
   schedule:
-    - cron: '0 19 * * *' # Run daily at 7pm GMT
+    - cron: '0 17 * * *' # Run daily at 7pm GMT
   workflow_dispatch: # Allow manual trigger
 
 permissions:
