@@ -171,7 +171,7 @@ variable "ip_rules" {
   default = [
     "147.161.225.23", // Lukasz
     "77.103.1.170",   // Kiran
-    "149.50.12.63",   // Sabina
+    "51.191.232.21",   // Sabina
     "82.6.14.211",    // Aneesa
   ]
 }
