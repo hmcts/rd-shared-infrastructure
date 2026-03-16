@@ -34,6 +34,8 @@ module "storage_account_rd_data_extract" {
 
   enable_https_traffic_only = true
 
+  pim_roles = local.de_pim_roles
+
   ip_rules = var.ip_rules
 
   // Tags

@@ -176,16 +176,6 @@ variable "ip_rules" {
   ]
 }
 
-variable "pim_eligible_role_assignment_duration_days" {
-  type        = number
-  description = "PIM eligible role assignment duration in days. Must satisfy the role management policy expiration rule."
-  default     = 90
-
-  validation {
-    condition     = var.pim_eligible_role_assignment_duration_days >= 1 && var.pim_eligible_role_assignment_duration_days <= 365
-    error_message = "pim_eligible_role_assignment_duration_days must be between 1 and 365 days."
-  }
-}
 
 variable "sku_service_bus" {
   type        = string

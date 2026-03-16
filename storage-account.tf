@@ -41,6 +41,8 @@ module "storage_account" {
   //  enable_file_encryption    = true
   enable_https_traffic_only = true
 
+  pim_roles = local.pim_roles
+
   ip_rules = var.ip_rules
 
   // Tags
