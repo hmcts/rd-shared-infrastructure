@@ -30,8 +30,6 @@ module "storage_account_rd_commondata" {
 
   enable_https_traffic_only = true
 
-  pim_roles = local.cd_pim_roles
-
   ip_rules = var.ip_rules
 
   // Tags
