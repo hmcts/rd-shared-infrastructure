@@ -7,4 +7,3 @@ rd_storage_access_tier = "Hot"
 
 rd_location_storage_access_tier = "Hot"
 sku_service_bus                 = "Premium"
-pim_expiration_days             = 180

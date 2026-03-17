@@ -9,12 +9,6 @@ variable "env" {
   description = "The deployment environment (sandbox, aat, prod etc..)"
 }
 
-variable "pim_expiration_days" {
-  type        = number
-  default     = 180
-  description = "Number of days for PIM eligible role assignment expiration."
-}
-
 variable "location" {
   type    = string
   default = "UK South"

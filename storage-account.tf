@@ -27,7 +27,7 @@ locals {
 }
 
 module "storage_account" {
-  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=4.x"
+  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=30795"
   env                      = var.env
   storage_account_name     = local.account_name
   resource_group_name      = azurerm_resource_group.rg.name
@@ -41,7 +41,7 @@ module "storage_account" {
   //  enable_file_encryption    = true
   enable_https_traffic_only = true
 
-  pim_roles = {}
+  pim_roles = local.pim_roles
 
   ip_rules = var.ip_rules
 
