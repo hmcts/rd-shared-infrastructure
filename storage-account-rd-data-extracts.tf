@@ -6,12 +6,15 @@ locals {
   de_pim_roles = var.env != "prod" ? {} : {
     "Storage Blob Data Contributor" = {
       principal_id = data.azuread_group.sc_group.id
+      duration_days = 365
     }
     "Storage Blob Delegator" = {
       principal_id = data.azuread_group.sc_group.id
+      duration_days = 365
     }
     "Storage Blob Data Reader" = {
       principal_id = data.azuread_group.sc_group.id
+      duration_days = 365
     }
   }
 }
