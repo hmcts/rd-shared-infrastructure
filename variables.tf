@@ -176,7 +176,6 @@ variable "ip_rules" {
   ]
 }
 
-
 variable "sku_service_bus" {
   type        = string
   default     = "Standard"

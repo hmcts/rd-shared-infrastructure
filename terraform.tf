@@ -61,6 +61,5 @@ terraform {
       source  = "hashicorp/azuread"
       version = "2.48.0"
     }
-
   }
 }
