@@ -22,7 +22,7 @@ data "azuread_group" "sc_group" {
 }
 
 module "storage_account_rd_data_extract" {
-  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=4.x"
+  source                   = "git@github.com:hmcts/cnp-module-storage-account?ref=30795"
   env                      = var.env
   storage_account_name     = local.rd_data_extract_account_name
   resource_group_name      = azurerm_resource_group.rg.name
