@@ -181,3 +181,7 @@ variable "sku_service_bus" {
   default     = "Standard"
   description = "SKU type(Basic, Standard and Premium)"
 }
+
+variable "sampling_percentage" {
+  description = "Specifies the sampling percentage for Application Insights"
+}
