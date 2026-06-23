@@ -183,7 +183,7 @@ variable "sku_service_bus" {
 }
 
 variable "sampling_percentage" {
-  description = "Specifies the sampling percentage for Application Insights.Defaults to 100% for preview and 1% for all other environments."
+  description = "Specifies the sampling percentage for Application Insights. null uses default value from terraform-module-application-insights."
   type        = number
   default     = null
 }
