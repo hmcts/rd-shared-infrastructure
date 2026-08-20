@@ -24,12 +24,6 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias           = "aks_prod"
-  subscription_id = "8cbc6f36-7c56-4963-9d36-739db5d00b27"
-  features {}
-}
-
-provider "azurerm" {
   alias           = "sendgrid"
   subscription_id = var.env != "prod" ? local.sendgrid_subscription.nonprod : local.sendgrid_subscription.prod
   features {}
