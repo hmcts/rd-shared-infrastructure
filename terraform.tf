@@ -36,12 +36,6 @@ provider "azurerm" {
   subscription_id            = var.aks_subscription_id
 }
 
-provider "azurerm" {
-  alias           = "sds_prod"
-  subscription_id = "5ca62022-6aa2-4cee-aaa7-e7536c8d566c"
-  features {}
-}
-
 terraform {
   backend "azurerm" {}
 
