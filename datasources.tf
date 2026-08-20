@@ -9,6 +9,18 @@ locals {
   aks_core_vnet_rg = "cft-${var.env}-network-rg"
 }
 
+data "azurerm_subnet" "prod_aks_00_subnet" {
+  name                 = "aks-00"
+  virtual_network_name = local.prod_vnet_name
+  resource_group_name  = local.prod_vnet_resource_group
+}
+
+data "azurerm_subnet" "prod_aks_01_subnet" {
+  name                 = "aks-01"
+  virtual_network_name = local.prod_vnet_name
+  resource_group_name  = local.prod_vnet_resource_group
+}
+
 data "azurerm_virtual_network" "mgmt_vnet" {
   provider            = azurerm.mgmt
   name                = local.mgmt_network_name
