@@ -11,14 +11,14 @@ locals {
 
 data "azurerm_subnet" "prod_aks_00_subnet" {
   count                = var.env == "prod" ? 1 : 0
-  name                 = "aks-00"
+  name                 = "cft-prod-00-aks"
   virtual_network_name = local.prod_vnet_name
   resource_group_name  = local.prod_vnet_resource_group
 }
 
 data "azurerm_subnet" "prod_aks_01_subnet" {
   count                = var.env == "prod" ? 1 : 0
-  name                 = "aks-01"
+  name                 = "cft-prod-01-aks"
   virtual_network_name = local.prod_vnet_name
   resource_group_name  = local.prod_vnet_resource_group
 }
