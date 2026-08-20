@@ -5,8 +5,7 @@ locals {
   valid_subnets = [
     data.azurerm_subnet.aks_00.id,
     data.azurerm_subnet.aks_01.id,
-    data.azurerm_subnet.jenkins_subnet.id,
-    data.azurerm_subnet.bau_bais_private_prod.id
+    data.azurerm_subnet.jenkins_subnet.id
   ]
 
   cft_prod_subnets = var.env == "prod" ? [data.azurerm_subnet.prod_aks_00_subnet[0].id, data.azurerm_subnet.prod_aks_01_subnet[0].id] : []
