@@ -9,7 +9,7 @@ locals {
     data.azurerm_subnet.bau_bais_private_prod.id
   ]
 
-  cft_prod_subnets = var.env == "prod" ? [data.azurerm_subnet.prod_aks_00_subnet[count.index].id, data.azurerm_subnet.prod_aks_01_subnet[count.index].id] : []
+  cft_prod_subnets = var.env == "prod" ? [data.azurerm_subnet.prod_aks_00_subnet[0].id, data.azurerm_subnet.prod_aks_01_subnet[0].id] : []
 
   all_valid_subnets = concat(local.valid_subnets, local.cft_prod_subnets)
 
