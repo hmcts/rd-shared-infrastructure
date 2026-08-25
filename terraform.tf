@@ -24,12 +24,6 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias           = "aks_prod"
-  subscription_id = "8cbc6f36-7c56-4963-9d36-739db5d00b27"
-  features {}
-}
-
-provider "azurerm" {
   alias           = "sendgrid"
   subscription_id = var.env != "prod" ? local.sendgrid_subscription.nonprod : local.sendgrid_subscription.prod
   features {}
@@ -40,12 +34,6 @@ provider "azurerm" {
   skip_provider_registration = true
   alias                      = "private_endpoint"
   subscription_id            = var.aks_subscription_id
-}
-
-provider "azurerm" {
-  alias           = "sds_prod"
-  subscription_id = "5ca62022-6aa2-4cee-aaa7-e7536c8d566c"
-  features {}
 }
 
 terraform {
