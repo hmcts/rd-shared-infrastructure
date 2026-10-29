@@ -3,7 +3,7 @@ locals {
 }
 
 module "rd_key_vault" {
-  source                               = "git@github.com:hmcts/cnp-module-key-vault?ref=DTSPO-31965/remove-jenkins-ptl-access"
+  source                               = "git@github.com:hmcts/cnp-module-key-vault?ref=a0781bf1033284e1f4b2216cdd3e6b95549e63bd"
   name                                 = local.key_vault_name
   location                             = var.location
   resource_group_name                  = azurerm_resource_group.rg.name
