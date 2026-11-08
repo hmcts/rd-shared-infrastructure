@@ -14,7 +14,7 @@ module "servicebus-namespace" {
     azurerm.private_endpoint = azurerm.private_endpoint
   }
 
-  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=4.x"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-namespace?ref=29840dcf3ff7cba21d7db266593bb665fbd37f57"
   name                = local.servicebus_namespace_name
   location            = var.location
   env                 = var.env
@@ -25,14 +25,14 @@ module "servicebus-namespace" {
 
 
 module "caseworker-topic" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=4.x"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=624cfa7032264ac78acef67d27b1d7da17d6bd3c"
   name                = local.caseworker_topic_name
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = local.resource_group_name
 }
 
 module "caseworker-subscription" {
-  source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
+  source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=9ba997c171c22d4c2f7e10eb8b4d4ffb80187de8"
   name         = local.caseworker_subscription_name
   topic_id     = module.caseworker-topic.id
   depends_on   = [module.caseworker-topic]
@@ -40,14 +40,14 @@ module "caseworker-subscription" {
 }
 
 module "judicial-topic" {
-  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=4.x"
+  source              = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=624cfa7032264ac78acef67d27b1d7da17d6bd3c"
   name                = local.judicial_topic_name
   namespace_name      = module.servicebus-namespace.name
   resource_group_name = local.resource_group_name
 }
 
 module "judicial-subscription" {
-  source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
+  source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=9ba997c171c22d4c2f7e10eb8b4d4ffb80187de8"
   name         = local.judicial_subscription_name
   topic_id     = module.judicial-topic.id
   depends_on   = [module.judicial-topic]
@@ -55,7 +55,7 @@ module "judicial-subscription" {
 }
 
 module "am-orm-judicial-test-pr-subscription" {
-  source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
+  source       = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=9ba997c171c22d4c2f7e10eb8b4d4ffb80187de8"
   count        = lower(var.env) == "aat" ? 1 : 0
   name         = "am-orm-judicial-preview-functional-test"
   topic_id     = module.judicial-topic.id
